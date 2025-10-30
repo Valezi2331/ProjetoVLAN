@@ -1,0 +1,48 @@
+R1
+int g0/0
+ip add 10.10.10.1 255.255.255.0
+!
+int g0/1
+ip add 10.10.20.1 255.255.255.0
+!
+int range g0/0-1
+no shut
+!
+hostname R1
+!
+line console 0
+password <Ciscoenpa55>
+login
+service password-encryption
+!
+ip domain-name meu-dominio1.com
+username admin secret Ciscolinepa55
+crypto key generate rsa
+ip ssh version 2
+line vty 0 4
+login local
+transport input ssd
+ex
+end
+en
+write memory
+copy running-config startup-config
+!
+banner login Bem-vindo
+
+S1
+enable
+conf t
+!
+hostname S1
+!
+int f0/1
+description #Interface_do_PC1#
+
+S2
+enable
+conf t
+hostname S2
+!
+int f0/1
+description #Interface_do_PC2#
