@@ -46,3 +46,93 @@ hostname S2
 !
 int f0/1
 description #Interface_do_PC2#
+
+S3
+!
+hostname S3
+!
+vlan 10
+name Admin
+vlan 20
+name Contas
+vlan 30
+name HR
+vlan 40
+name Voz
+vlan 99
+name Gerenciamento
+!
+int f0/1
+switch mode access
+sw acc vlan 10
+int f0/2
+switch mode access
+sw acc vlan 20
+int f0/3
+switch mode access
+sw acc vlan 30
+!
+int g0/1
+switch mode trunk
+switch nonegotiate
+sw tru native vlan 100
+
+S4
+!
+hostname S4
+!
+vlan 10
+name Admin
+vlan 20
+name Contas
+vlan 30
+name HR
+vlan 40
+name Voz
+vlan 99
+name Gerenciamento
+!
+int f0/1
+switch mode access
+sw acc vlan 10
+int f0/2
+switch mode access
+sw acc vlan 20
+int f0/3
+switch mode access
+sw acc vlan 30
+int f0/4
+sw mo acc
+sw acc vlan 10
+mls qos trust cos
+sw voice vlan 40
+!
+int g0/1
+switch mode trunk
+switch nonegotiate
+sw tru native vlan 100
+
+S5
+!
+hostname S5
+!
+vlan 10
+name Admin
+vlan 20
+name Contas
+vlan 30
+name HR
+vlan 40
+name Voz
+vlan 99
+name Gerenciamento
+!
+int g0/1
+switch mode trunk
+switch nonegotiate
+sw tru native vlan 100
+!
+int g0/2
+switch mode trunk
+switch nonegotiate
+sw tru native vlan 100
